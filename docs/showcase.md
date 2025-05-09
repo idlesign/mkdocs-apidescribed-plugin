@@ -9,7 +9,7 @@ Let's document module ``mkdocs_apidescribed.probe``.
          - "_*"
          - "*ignore*"
 ```
-**Below is automated documentation below.**
+**Below is an automated documentation sample.**
 
 ----
 
