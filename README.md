@@ -2,8 +2,9 @@
 
 https://github.com/idlesign/mkdocs-apidescribed-plugin
 
-[![PyPI - Version](https://img.shields.io/pypi/v/django-sitetree)](https://pypi.python.org/pypi/django-sitetree)
-[![License](https://img.shields.io/pypi/l/django-sitetree)](https://pypi.python.org/pypi/django-sitetree)
+[![PyPI - Version](https://img.shields.io/pypi/v/mkdocs-apidescribed-plugin)](https://pypi.python.org/pypi/mkdocs-apidescribed-plugin)
+[![License](https://img.shields.io/pypi/l/mkdocs-apidescribed-plugin)](https://pypi.python.org/pypi/mkdocs-apidescribed-plugin)
+[![Coverage](https://img.shields.io/coverallsCoverage/github/idlesign/mkdocs-apidescribed-plugin)](https://coveralls.io/r/idlesign/mkdocs-apidescribed-plugin)
 
 ## Description
 
