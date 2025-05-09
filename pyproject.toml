@@ -1,0 +1,42 @@
+[project]
+name = "mkdocs-apidescribed-plugin"
+dynamic = ["version"]
+description = "mkdocs plugin to generate API documentation for Python programs"
+authors = [
+    { name = "Igor Starikov", email = "idlesign@yandex.ru" }
+]
+readme = "README.md"
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+keywords = ["mkdocs", "api", "plugin"]
+dependencies = [
+    "mkdocs",
+    "griffe",
+    "PyYAML",
+]
+
+[project.urls]
+Homepage = "https://github.com/idlesign/mkdocs-apidescribed-plugin"
+Documentation = "https://mkdocs-apidescribed-plugin.readthedocs.org/"
+
+[project.entry-points."mkdocs.plugins"]
+"apidescribed" = "mkdocs_apidescribed.plugin:ApiDescribedPlugin"
+
+[dependency-groups]
+dev = [
+    "mkdocs",
+    "mkdocs-material",
+    "pytest",
+    "ruff",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "src/mkdocs_apidescribed/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mkdocs_apidescribed"]
