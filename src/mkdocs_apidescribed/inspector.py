@@ -71,6 +71,7 @@ def get_symbol(
     undocumented: bool = False,
     ignore: list[str] = None,
     only: set[str] = None,
+    inherited: bool = True,
     depth: int = 0,
 ) -> tuple[Symbol, list[Symbol]] | None:
 
@@ -101,6 +102,7 @@ def get_symbol(
             undocumented=undocumented,
             ignore=ignore,
             only=only,
+            inherited=inherited,
             depth=depth + 1
         )
 
@@ -178,6 +180,7 @@ def get_symbols(
                 undocumented=undocumented,
                 ignore=ignore,
                 only=only,
+                inherited=inherited,
                 depth=depth,
             )
 
