@@ -12,9 +12,11 @@ from .parsers import DocstrParser, Block
 log = get_plugin_logger(__name__)
 
 RE_LINK = re.compile(
-    r'https?://(www\.)?[A-z0-9@:%.-_+~#=]{1,256}\.[A-z0-9()]{1,6}\b([A-z0-9()@:%-_+.~#?&/=]*)'
+    r'https?://(www\.)?[A-z0-9@:%.\-_+~#=]{1,256}\.[A-z0-9()]{1,6}\b([A-z0-9()@:%\-_+.~#?&/=]*)'
 )
 
+# todo class bases
+# todo link to src in repo
 
 class Formatter:
 
@@ -295,6 +297,9 @@ class Formatter:
 
         if out.strip():
             out = f'{out}\n----'
+
+        if 'uwsgi-docs' in out:
+            a=1
 
         if self.config['autolinks']:
             out = RE_LINK.sub(r'<\g<0>>', out)
