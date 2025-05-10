@@ -15,7 +15,6 @@ Let's document module ``mkdocs_apidescribed.probe``.
 
 ::: apidescribed: mkdocs_apidescribed.probe
     debug: true
-    inherited: false
     ignore:
         - "_*"
         - "*ignore*"

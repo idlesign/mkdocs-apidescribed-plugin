@@ -26,9 +26,10 @@ DEFAULT_CONFIG = {
         'func': ':material-function:',  # for functions
         'cls': ':material-delta:',  # for classes
         'property': ':material-alpha-p-box-outline:',  # for class properties
-        'classmethod': ':material-alpha-c-box-outline:',  # for class properties
-        'staticmethod': ':material-alpha-s-box-outline:',  # for class properties
+        'classmethod': ':material-alpha-c-box-outline:',  # for class methods
+        'staticmethod': ':material-alpha-s-box-outline:',  # for static methods
         'inherited': ':material-subdirectory-arrow-left:',  # for class inherited items
+        'clsbases': ':material-alpha-b-box:',  # for base classes
         'raises': ':material-lightning-bolt:',  # for descriptions of raised exceptions
         'returns': ':material-arrow-right-thin:',  # for descriptions of returned value
     },

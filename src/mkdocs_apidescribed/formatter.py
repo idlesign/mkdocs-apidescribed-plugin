@@ -15,7 +15,6 @@ RE_LINK = re.compile(
     r'https?://(www\.)?[A-z0-9@:%.\-_+~#=]{1,256}\.[A-z0-9()]{1,6}\b([A-z0-9()@:%\-_+.~#?&/=]*)'
 )
 
-# todo class bases
 # todo link to src in repo
 
 class Formatter:
@@ -24,6 +23,7 @@ class Formatter:
         SymbolType.attr: 'Attributes',
         SymbolType.func: 'Functions',
         SymbolType.cls: 'Classes',
+        SymbolType.module: 'Modules',
     }
 
     @classmethod
@@ -219,12 +219,17 @@ class Formatter:
 
     def format_description(self) -> str:
         docstring = self.docstr
+        symbol = self.symbol
+        icons = self.config['icons']
 
         text = docstring.text
 
-        text = f'{text}\n'
+        prefix = ''
+        if symbol.type == SymbolType.cls:
+            if bases := [f'[``{base.name}``](#{base.name.lower()})' for base in symbol.raw.bases]:
+                prefix = f'{icons["clsbases"]} {" ".join(bases)}\n\n'
 
-        icons = self.config['icons']
+        text = f'{prefix}{text}\n'
 
         if raised := docstring.raises:
             raises = '\n\n'.join(
@@ -297,9 +302,6 @@ class Formatter:
 
         if out.strip():
             out = f'{out}\n----'
-
-        if 'uwsgi-docs' in out:
-            a=1
 
         if self.config['autolinks']:
             out = RE_LINK.sub(r'<\g<0>>', out)

@@ -157,7 +157,7 @@ class MyBaseClass:
         return True
 
 
-class MySubClass(MyBaseClass):
+class MySubClass(MyBaseClass, list):
     """Sub class description."""
 
     sub_attr = "sub_attr value"
