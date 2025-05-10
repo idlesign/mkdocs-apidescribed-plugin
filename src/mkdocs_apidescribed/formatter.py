@@ -30,7 +30,7 @@ class Formatter:
     def format_error(cls, exc: Exception, *, instruction: list[str], debug: bool = False) -> str:
 
         def indent_raw(val: str) -> str:
-            return f'    ```\n{indent(val, prefix='    ')}\n    ```\n'
+            return f'    ```\n{indent(val, prefix="    ")}\n    ```\n'
 
         lines = [
             f'??? failure "Automated documentation error: {exc.__class__.__name__}"',
