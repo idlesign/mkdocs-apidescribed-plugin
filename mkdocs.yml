@@ -21,6 +21,7 @@ theme:
   features:
     - navigation.top
     - toc.follow
+    - content.action.view
     - content.action.edit
     - content.code.copy
     - content.code.annotate
