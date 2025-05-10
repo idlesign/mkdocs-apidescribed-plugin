@@ -23,7 +23,13 @@ class ApidescribedProcessor(Preprocessor):
         out = []
         last_type = ''
 
-        root, symbols = inspect(target, types=config['types'], ignore=config['ignore'], only=config['only'])
+        root, symbols = inspect(
+            target,
+            types=config['types'],
+            ignore=config['ignore'],
+            only=config['only'],
+            inherited=config['inherited'],
+        )
         formatter = cls_fmt(symbol=root, config=config)
 
         if prolog := formatter.run():

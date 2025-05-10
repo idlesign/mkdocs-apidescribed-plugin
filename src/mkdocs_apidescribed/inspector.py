@@ -132,7 +132,8 @@ def get_symbols(
     undocumented: bool = False,
     ignore: list[str] = None,
     only: set[str] = None,
-    depth: int = 0
+    inherited: bool = True,
+    depth: int = 0,
 ) -> list[Symbol]:
 
     symbols = []
@@ -152,6 +153,9 @@ def get_symbols(
 
             docstring = symbol_raw.docstring
             skip = False
+
+            if not inherited and symbol_raw.inherited:
+                continue
 
             if docstring is None and not undocumented:
                 continue
@@ -193,13 +197,21 @@ def inspect(
         types: list[str],
         undocumented: bool = False,
         ignore: list[str],
-        only: list[str]
+        only: list[str],
+        inherited: bool,
 ) -> tuple[Symbol, list[Symbol]]:
 
     log.info(f'Getting API information for: {target} ...')
     obj = griffe.load(target)
 
     root, _ = get_symbol(obj)
-    symbols = get_symbols(obj, types=types, undocumented=undocumented, ignore=ignore, only=set(only))
+    symbols = get_symbols(
+        obj,
+        types=types,
+        undocumented=undocumented,
+        ignore=ignore,
+        only=set(only),
+        inherited=inherited,
+    )
 
     return root, symbols

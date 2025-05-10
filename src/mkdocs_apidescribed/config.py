@@ -34,6 +34,7 @@ DEFAULT_CONFIG = {
     },
 
     'undocumented': False,  # describe items without docstrings
+    'inherited': True,  # describe inherited items (e.g. from parent classes)
     'types': [
         # symbol types to describe (order respected)
         'attributes',
