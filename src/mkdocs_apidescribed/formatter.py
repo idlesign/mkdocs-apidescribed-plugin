@@ -259,10 +259,8 @@ class Formatter:
         if symbol.is_staticmethod:
             icons_after.append(icons['staticmethod'])
 
-        title = (
-            f'{"#" * (self.heading_level + symbol.depth)} '
-            f'{icon_before} {symbol.name} {" ".join(icons_after)}\n'
-        )
+        heading_marker = f'{"#" * (self.heading_level + symbol.depth)} '[:7]  # 7th level max
+        title = f'{heading_marker}{icon_before} {symbol.name} {" ".join(icons_after)}\n'
 
         return title
 
