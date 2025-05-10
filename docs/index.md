@@ -35,12 +35,12 @@ pip install mkdocs-apidescribed-plugin
     markdown_extensions:
       - mkdocs_apidescribed.extension # this is our extention
       - admonition  # nice admonitions
-      - pymdownx.superfences
-      - pymdownx.details  # collapsible blocks
       - md_in_html  # for proper indentation
+      - pymdownx.details  # collapsible blocks
       - pymdownx.emoji:  # for icons
-        emoji_index: !!python/name:material.extensions.emoji.twemoji
-        emoji_generator: !!python/name:material.extensions.emoji.to_svg
+          emoji_index: !!python/name:material.extensions.emoji.twemoji
+          emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      - pymdownx.superfences
    
     ```
 
