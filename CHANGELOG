@@ -2,8 +2,8 @@ mkdocs-apidescribed-plugin changelog
 ====================================
 
 
-Unreleased
-----------
+v0.2.0 [2025-05-11]
+-------------------
 + Add 'inherited' filter option.
 + Show class bases.
 * Fix autolinks behaviour.
