@@ -1,5 +1,4 @@
-mkdocs-apidescribed-plugin changelog
-====================================
+# mkdocs-apidescribed-plugin changelog
 
 
 v0.2.0 [2025-05-11]
