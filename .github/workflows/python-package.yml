@@ -24,6 +24,10 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Setup uv
       uses: astral-sh/setup-uv@v6
+    - name: Install deps
+      run: |
+        uv sync --only-group tests --only-group docs
+        uv pip install coveralls
     - name: Run tests
       env:
         GITHUB_TOKEN: ${{ secrets.github_token }}
