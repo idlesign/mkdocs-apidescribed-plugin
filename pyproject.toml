@@ -58,12 +58,10 @@ packages = ["src/mkdocs_apidescribed"]
 packages = ["src/mkdocs_apidescribed"]
 
 [tool.coverage.run]
-omit = []
-
-[tool.coverage.paths]
 source = [
     "src/",
 ]
+omit = []
 
 [tool.coverage.report]
 fail_under = 98.00
