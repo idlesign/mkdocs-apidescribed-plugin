@@ -25,11 +25,21 @@ Documentation = "https://mkdocs-apidescribed-plugin.readthedocs.org/"
 
 [dependency-groups]
 dev = [
+    {include-group = "docs"},
+    {include-group = "linters"},
+    {include-group = "tests"},
+]
+docs = [
     "mkdocs",
     "mkdocs-material",
-    "pytest",
+]
+linters = [
     "ruff",
 ]
+tests = [
+    "pytest",
+]
+
 
 [build-system]
 requires = ["hatchling"]
@@ -39,4 +49,7 @@ build-backend = "hatchling.build"
 path = "src/mkdocs_apidescribed/__init__.py"
 
 [tool.hatch.build.targets.wheel]
+packages = ["src/mkdocs_apidescribed"]
+
+[tool.hatch.build.targets.sdist]
 packages = ["src/mkdocs_apidescribed"]
