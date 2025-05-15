@@ -1,6 +1,6 @@
 # mkdocs-apidescribed-plugin changelog
 
-### Unreleased
+### v1.0.1 [2025-05-15]
 * ** Fix wheel+sdist distribution.
 
 ### v1.0.0 [2025-05-15]
