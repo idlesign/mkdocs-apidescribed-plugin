@@ -29,5 +29,5 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.github_token }}
       run: |
-        coverage run --source=src/mkdocs_apidescribed -m pytest
+        coverage run -m pytest
         coveralls --service=github
