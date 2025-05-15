@@ -1,6 +1,6 @@
 # mkdocs-apidescribed-plugin changelog
 
-## Unreleased
+### v1.0.0 [2025-05-15]
 * ++ Celebrate 1.0.0. No changes.
 
 ## v0.2.0 [2025-05-11]
