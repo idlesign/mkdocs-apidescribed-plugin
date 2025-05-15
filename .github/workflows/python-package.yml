@@ -26,7 +26,6 @@ jobs:
       uses: astral-sh/setup-uv@v6
     - name: Install deps
       run: |
-        uv sync
         uv pip install coverage coveralls
     - name: Run tests
       env:
