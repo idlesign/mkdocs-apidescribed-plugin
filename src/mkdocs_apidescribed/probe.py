@@ -20,7 +20,7 @@ ENVIRON = environ
 """Alias description."""
 
 
-def undocumented():
+def undocumented():  # pragma: nocover
     pass
 
 
@@ -152,7 +152,7 @@ class MyBaseClass:
     def __str__(self):
         """Specialized. To string."""
 
-    def method_a(self, a=1):
+    def method_a(self, a=1):  # pragma: nocover
         """Base method_a description."""
         return True
 
@@ -169,6 +169,6 @@ class MySubClass(MyBaseClass, list):
         a: str,
         b: int,
         d: float,
-    ) -> str:
+    ) -> str:  # pragma: nocover
         """Sub method_sub_b description."""
         return ''
