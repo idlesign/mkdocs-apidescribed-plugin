@@ -38,6 +38,9 @@ linters = [
 ]
 tests = [
     "pytest",
+    "pytest-cov",
+    "pytest-datafixtures",
+    "coverage",
 ]
 
 
@@ -53,3 +56,15 @@ packages = ["src/mkdocs_apidescribed"]
 
 [tool.hatch.build.targets.sdist]
 packages = ["src/mkdocs_apidescribed"]
+
+[tool.coverage.run]
+source = [
+    "src/mkdocs_apidescribed",
+]
+
+[tool.coverage.report]
+fail_under = 90.00
+exclude_also = [
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+]

@@ -1,0 +1,261 @@
+<p>before</p>
+<p>This is a module description.</p>
+<p>This takes several lines and contains formatted text.</p>
+<p><a href="https://github.com/idlesign/mkdocs-apidescribed-plugin">https://github.com/idlesign/mkdocs-apidescribed-plugin</a></p>
+<p>!!! note
+    This text is an admonition.</p>
+<p>!!! warning
+    This is a reStructuredText mixed warning.</p>
+<hr />
+<h2>Attributes</h2>
+<h3>:material-alpha: CONSTANT</h3>
+<div style="margin-left:1.8em" markdown>
+``` py 
+CONSTANT: int = 1
+```
+
+Constant description.
+</div>
+<hr />
+<h3>:material-alpha: ENVIRON</h3>
+<div style="margin-left:1.8em" markdown>
+``` py 
+ENVIRON = environ
+```
+
+Alias description.
+</div>
+<hr />
+<h2>Functions</h2>
+<h3>:material-function: just_ignore_that</h3>
+<div style="margin-left:1.8em" markdown>
+``` py 
+just_ignore_that()
+```
+
+Ignore it.
+</div>
+<hr />
+<h3>:material-function: myfunc_google</h3>
+<div style="margin-left:1.8em" markdown>
+``` py 
+myfunc_google(q: str, w: int, e: list, **kwargs) -> bool
+```
+
+Function description.
+
+Uses Google markup for signature description.
+
+Note:
+    Some note for you.
+
+Args:
+    q (str): Param q
+    w: Param w
+    e: Param e
+    **kwargs: Keyword parameters
+
+Yields:
+    int: This one
+
+Returns:
+    bool: True if successful, False otherwise.
+
+    Even more text for return description.
+
+Raises:
+    AttributeError: Can raise
+        this in some cases.
+    ValueError: If something.
+
+Examples:
+    This is an example.
+    Multiple Lines.
+</div>
+<hr />
+<h3>:material-function: myfunc_rst</h3>
+<div style="margin-left:1.8em" markdown>
+``` py 
+myfunc_rst(
+    a: list[str],  # (1)!
+    b: int = 0,  # (2)!
+    *args,  # (3)!
+    another: str,  # (4)!
+    **kwargs,  # (5)!
+) -> bool
+```
+
+1.     comment for a
+
+
+
+2.     hint for b
+    Several lines.
+
+    !!! warning
+        Some warning
+
+    Another line.
+    <https://github.com/idlesign/mkdocs-apidescribed-plugin>
+
+3.     info for args
+
+4.     text for another
+
+
+5.     description for kwargs
+
+Function description.
+This one is split into several lines
+yet supposes a single sentence.
+
+Uses reStructuredText markup for signature description.
+
+See: <https://github.com/idlesign/mkdocs-apidescribed-plugin>
+
+!!! note
+    Some note here.
+
+```bash
+cd ~
+touch this/
+```
+
+:material-lightning-bolt: `ValueError` If something happens
+
+:material-lightning-bolt: `KeyError` If something other happens
+
+:material-arrow-right-thin: This is returned
+
+:material-arrow-right-thin: This is also returned
+</div>
+<hr />
+<h2>Classes</h2>
+<h3>:material-delta: MyBaseClass</h3>
+<div style="margin-left:1.8em" markdown>
+``` py 
+MyBaseClass(in_a: int)
+```
+
+Base class description.
+</div>
+<hr />
+<div style="margin-left:1.8em" markdown>#### :material-alpha: base_attr 
+<div style="margin-left:1.8em" markdown>
+``` py 
+.base_attr: str = "base_attr value"
+```
+
+Base attr description.
+</div></div>
+<hr />
+<div style="margin-left:1.8em" markdown>#### :material-alpha: prop_a :material-alpha-p-box-outline:
+<div style="margin-left:1.8em" markdown>
+``` py 
+.prop_a()
+```
+
+Property A.
+</div></div>
+<hr />
+<div style="margin-left:1.8em" markdown>#### :material-function: method_a 
+<div style="margin-left:1.8em" markdown>
+``` py 
+.method_a(a=1)
+```
+
+Base method_a description.
+</div></div>
+<hr />
+<div style="margin-left:1.8em" markdown>#### :material-function: method_cl :material-alpha-c-box-outline:
+<div style="margin-left:1.8em" markdown>
+``` py 
+.method_cl(arg1: str)
+```
+
+Class method.
+</div></div>
+<hr />
+<div style="margin-left:1.8em" markdown>#### :material-function: method_st :material-alpha-s-box-outline:
+<div style="margin-left:1.8em" markdown>
+``` py 
+.method_st(val)
+```
+
+Static method.
+</div></div>
+<hr />
+<h3>:material-delta: MySubClass</h3>
+<div style="margin-left:1.8em" markdown>
+``` py 
+MySubClass(in_a: int)
+```
+
+:material-alpha-b-box: [``MyBaseClass``](#mybaseclass) [``list``](#list)
+
+Sub class description.
+</div>
+<hr />
+<div style="margin-left:1.8em" markdown>#### :material-alpha: base_attr :material-subdirectory-arrow-left:
+<div style="margin-left:1.8em" markdown>
+``` py 
+.base_attr: str = "base_attr value"
+```
+
+Base attr description.
+</div></div>
+<hr />
+<div style="margin-left:1.8em" markdown>#### :material-alpha: prop_a :material-subdirectory-arrow-left: :material-alpha-p-box-outline:
+<div style="margin-left:1.8em" markdown>
+``` py 
+.prop_a()
+```
+
+Property A.
+</div></div>
+<hr />
+<div style="margin-left:1.8em" markdown>#### :material-alpha: sub_attr 
+<div style="margin-left:1.8em" markdown>
+``` py 
+.sub_attr = "sub_attr value"
+```
+
+Sub attr description.
+</div></div>
+<hr />
+<div style="margin-left:1.8em" markdown>#### :material-function: method_a :material-subdirectory-arrow-left:
+<div style="margin-left:1.8em" markdown>
+``` py 
+.method_a(a=1)
+```
+
+Base method_a description.
+</div></div>
+<hr />
+<div style="margin-left:1.8em" markdown>#### :material-function: method_cl :material-subdirectory-arrow-left: :material-alpha-c-box-outline:
+<div style="margin-left:1.8em" markdown>
+``` py 
+.method_cl(arg1: str)
+```
+
+Class method.
+</div></div>
+<hr />
+<div style="margin-left:1.8em" markdown>#### :material-function: method_st :material-subdirectory-arrow-left: :material-alpha-s-box-outline:
+<div style="margin-left:1.8em" markdown>
+``` py 
+.method_st(val)
+```
+
+Static method.
+</div></div>
+<hr />
+<div style="margin-left:1.8em" markdown>#### :material-function: method_sub_b 
+<div style="margin-left:1.8em" markdown>
+``` py 
+.method_sub_b(a: str, b: int, d: float) -> str
+```
+
+Sub method_sub_b description.
+</div></div>
+<hr />
