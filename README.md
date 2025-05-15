@@ -5,6 +5,7 @@ https://github.com/idlesign/mkdocs-apidescribed-plugin
 [![PyPI - Version](https://img.shields.io/pypi/v/mkdocs-apidescribed-plugin)](https://pypi.python.org/pypi/mkdocs-apidescribed-plugin)
 [![License](https://img.shields.io/pypi/l/mkdocs-apidescribed-plugin)](https://pypi.python.org/pypi/mkdocs-apidescribed-plugin)
 [![Coverage](https://img.shields.io/coverallsCoverage/github/idlesign/mkdocs-apidescribed-plugin)](https://coveralls.io/r/idlesign/mkdocs-apidescribed-plugin)
+[![Docs](https://img.shields.io/readthedocs/mkdocs-apidescribed-plugin)](https://mkdocs-apidescribed-plugin.readthedocs.io/)
 
 ## Description
 
@@ -26,4 +27,4 @@ This is my documentation
 
 ## Documentation
 
-https://mkdocs-apidescribed-plugin.readthedocs.org/
+https://mkdocs-apidescribed-plugin.readthedocs.io/
