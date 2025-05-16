@@ -51,9 +51,6 @@ build-backend = "hatchling.build"
 [tool.hatch.version]
 path = "src/mkdocs_apidescribed/__init__.py"
 
-[tool.hatch.build.targets.wheel]
-packages = ["src/mkdocs_apidescribed"]
-
 [tool.hatch.build.targets.sdist]
 packages = ["src/mkdocs_apidescribed"]
 
