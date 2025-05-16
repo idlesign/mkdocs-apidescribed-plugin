@@ -55,7 +55,7 @@ path = "src/mkdocs_apidescribed/__init__.py"
 packages = ["src/mkdocs_apidescribed"]
 
 [tool.hatch.build.targets.sdist]
-packages = ["src/mkdocs_apidescribed"]
+packages = ["src/"]
 
 [tool.coverage.run]
 source = [
