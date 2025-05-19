@@ -4,8 +4,6 @@ from dataclasses import dataclass, field
 from textwrap import dedent
 from typing import TYPE_CHECKING
 
-import griffe
-
 if TYPE_CHECKING:
     from .formatter import Formatter
 
@@ -47,9 +45,9 @@ class DocstrParser:
     registry: dict[str, type['DocstrParser']] = {}
 
     @classmethod
-    def parse(cls, docstr: griffe.Docstring | None, *, config: dict, formatter: 'Formatter') -> Docstring:
+    def parse(cls, docstr: str, *, config: dict, formatter: 'Formatter') -> Docstring:
 
-        value = getattr(docstr, 'value', None) or ''
+        value = docstr
         docstring = Docstring(text=f'{value}')
 
         if value:

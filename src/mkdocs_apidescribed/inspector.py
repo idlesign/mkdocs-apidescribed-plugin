@@ -25,7 +25,7 @@ class Symbol:
     type: SymbolType
     name: str
     source: str
-    docstr: griffe.Docstring
+    docstr: str
     path: str
     fpath: str
     params: griffe.Parameters | None
@@ -108,7 +108,7 @@ def get_symbol(
 
     if not symbol_type:
         log.error(f'Unsupported symbol type: {obj}. Skipped.')
-        return
+        return None
 
     symbol = Symbol(
         depth=depth,
@@ -116,7 +116,7 @@ def get_symbol(
         type=symbol_type,
         name=obj.name,
         source=obj.source,
-        docstr=obj.docstring,
+        docstr=getattr(obj.docstring, 'value', None) or '',
         path=obj.path,
         fpath=f'{obj.relative_package_filepath}',
         params=params,
