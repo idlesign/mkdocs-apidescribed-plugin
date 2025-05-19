@@ -1,6 +1,6 @@
 # mkdocs-apidescribed-plugin changelog
 
-### Unreleased
+### v1.1.0 [2025-05-20]
 * ++ Add basic support for Google docstrings.
 
 ### v1.0.1 [2025-05-15]
