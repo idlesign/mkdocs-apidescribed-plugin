@@ -1,0 +1,31 @@
+Function description.
+
+Note:
+    Some note for you.
+
+Args:
+    q (str): Param q
+    w: Param w
+        Description continued.
+    e: Param e
+    **kwargs: Keyword parameters
+
+Yields:
+    int: This one
+
+Returns:
+    bool: True if successful, False otherwise.
+
+    Even more text for return description.
+
+Raises:
+    AttributeError: Can raise
+        this in some cases.
+    ValueError: If something.
+
+Examples:
+    This is an example::
+
+        $ something do
+
+    Multiple Lines.

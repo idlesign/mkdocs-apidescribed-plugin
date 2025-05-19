@@ -39,8 +39,22 @@ Ignore it.
 <h3>:material-function: myfunc_google</h3>
 <div style="margin-left:1.8em" markdown>
 ``` py 
-myfunc_google(q: str, w: int, e: list, **kwargs) -> bool
+myfunc_google(
+    q: str,  # (1)!
+    w: int,  # (2)!
+    e: list,  # (3)!
+    **kwargs
+) -> bool
 ```
+
+1.     Param q
+
+
+2.     Param w
+
+
+3.     Param e
+
 
 Function description.
 
@@ -49,28 +63,15 @@ Uses Google markup for signature description.
 Note:
     Some note for you.
 
-Args:
-    q (str): Param q
-    w: Param w
-    e: Param e
-    **kwargs: Keyword parameters
 
-Yields:
-    int: This one
+:material-lightning-bolt: `AttributeError` Can raise
+    this in some cases.
 
-Returns:
-    bool: True if successful, False otherwise.
+:material-lightning-bolt: `ValueError` If something.
 
+
+:material-arrow-right-thin: True if successful, False otherwise.
     Even more text for return description.
-
-Raises:
-    AttributeError: Can raise
-        this in some cases.
-    ValueError: If something.
-
-Examples:
-    This is an example.
-    Multiple Lines.
 </div>
 <hr />
 <h3>:material-function: myfunc_rst</h3>

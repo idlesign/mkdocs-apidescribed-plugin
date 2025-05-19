@@ -1,5 +1,8 @@
 # mkdocs-apidescribed-plugin changelog
 
+### Unreleased
+* ++ Add basic support for Google docstrings.
+
 ### v1.0.1 [2025-05-15]
 * ** Fix wheel+sdist distribution.
 

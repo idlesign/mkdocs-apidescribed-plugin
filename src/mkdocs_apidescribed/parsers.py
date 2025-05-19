@@ -23,7 +23,7 @@ class Block:
 
     def __init__(self, marker: str = '', arg: str = '', value: str = ''):
         self.marker = marker or self.unmarked
-        self.arg = arg.strip()
+        self.arg = arg.strip().partition(' ')[0]  # e.g.: "arg (int)"
         self.value = value
         self.addition = []
 
@@ -85,8 +85,63 @@ class DocstrParser:
     def run(self) -> Docstring | None:
         return self._parse(self.src)
 
+    def normalize(self, text: str) -> str:
+        return text
+
     def postprocess(self, text: str) -> str:
         return text
+
+    def parse_blocks(
+            self,
+            *,
+            pattern: re.Pattern,
+            value: str,
+    ) -> tuple[dict[str, list[Block]], list[Block]]:
+
+        blocks: dict[str, list[Block]] = defaultdict(list)
+        block_last: Block | None = None
+        marker_detected = False
+
+        processed = []
+
+        for line in value.splitlines():
+
+            is_empty = len(line.strip()) == 0
+
+            if block_last:
+                if line.startswith(' ') or is_empty:
+                    # must be a continuation of a block
+                    block_last.contribute(line)
+                    continue
+
+                # previous block ended
+                processed.append(block_last)
+                block_last = None
+
+            if matched := pattern.match(line):
+                marker_detected = True
+                marker = matched.group('marker')
+
+                arg = matched.group('arg')
+                val = matched.group('value')
+
+                block = Block(marker, arg, val.strip())
+                blocks[marker].append(block)
+                block_last = block
+
+            else:
+                block = Block()
+                block.contribute(line)
+                blocks[Block.unmarked].append(block)
+                processed.append(block)
+
+        if block_last:
+            # block in the last line
+            processed.append(block_last)
+
+        self.markers_detected = self.markers_detected or marker_detected
+
+        return blocks, processed
 
     def _parse(self, value: str) -> Docstring | None:  # pragma: nocover
         return
@@ -152,63 +207,11 @@ class SphinxParser(DocstrParser):
 
         return '\n'.join(lines)
 
-    def parse_blocks(
-            self,
-            *,
-            pattern: re.Pattern,
-            value: str,
-    ) -> tuple[dict[str, list[Block]], list[Block]]:
-
-        blocks: dict[str, list[Block]] = defaultdict(list)
-        block_last: Block | None = None
-        marker_detected = False
-
-        processed = []
-
-        for line in value.splitlines():
-
-            is_empty = len(line.strip()) == 0
-
-            if block_last:
-                if line.startswith(' ') or is_empty:
-                    # must be a continuation of a block
-                    block_last.contribute(line)
-                    continue
-
-                # previous block ended
-                processed.append(block_last)
-                block_last = None
-
-            if matched := pattern.match(line):
-                marker_detected = True
-                marker = matched.group('marker')
-
-                arg = matched.group('arg')
-                val = matched.group('value')
-
-                block = Block(marker, arg, val.strip())
-                blocks[marker].append(block)
-                block_last = block
-
-            else:
-                block = Block()
-                block.contribute(line)
-                blocks[Block.unmarked].append(block)
-                processed.append(block)
-
-        if block_last:
-            # block in the last line
-            processed.append(block_last)
-
-        self.markers_detected = self.markers_detected or marker_detected
-
-        return blocks, processed
-
     def _parse(self, value: str) -> Docstring | None:
 
         blocks, processed = self.parse_blocks(
             pattern=self.re_markers,
-            value=value,
+            value=self.normalize(value),
         )
 
         return Docstring(
@@ -221,6 +224,66 @@ class SphinxParser(DocstrParser):
 
 class GoogleParser(DocstrParser):
     alias: str = 'google'
+
+    re_markers = re.compile(
+        r'^::(?P<marker>Args|Yields|Returns|Raises|Examples)::'
+        r'(?P<arg>[^:]*):\s*(?P<value>.*)'
+    )
+
+    re_preproc = re.compile(r'^(?P<marker>Args|Yields|Returns|Raises|Examples):$')
+
+    def normalize(self, value: str) -> str:
+        pattern = self.re_preproc
+        normalized = []
+        marker_stack = []
+        marker_depth = 0
+
+        for line in value.splitlines():
+
+            is_empty = len(line.strip()) == 0
+
+            if marker_stack:
+                if line.startswith(' ') or is_empty:
+                    unindented = line.lstrip(' ')
+                    indent_size = len(line) - len(unindented)
+
+                    if not marker_depth or indent_size == marker_depth:
+                        marker_depth = indent_size
+                        marker_stack.append(f"::{marker_stack[0]}:: {unindented}")
+
+                    elif indent_size > marker_depth:
+                        # deeper: block body (continuation)
+                        reindented = f'{" " * (indent_size-marker_depth)}{unindented}'
+                        marker_stack[-1] = f'{marker_stack[-1]}\n{reindented}'
+                    else:
+                        # end of block
+                        normalized.extend(marker_stack[1:])
+                        marker_stack.clear()
+                        marker_depth = 0
+
+                continue
+
+            if matched := pattern.match(line):
+                marker_stack.append(matched.group('marker'))
+
+            else:
+                normalized.append(line)
+
+        return '\n'.join(normalized)
+
+    def _parse(self, value: str) -> Docstring | None:
+
+        blocks, processed = self.parse_blocks(
+            pattern=self.re_markers,
+            value=self.normalize(value),
+        )
+
+        return Docstring(
+            text=self.postprocess('\n'.join(map(str, blocks[Block.unmarked]))),
+            params=self.to_dict(blocks['Args']),
+            returns=self.to_list(blocks['Returns']),
+            raises=self.to_dict(blocks['Raises']),
+        )
 
 
 class NumpyParser(DocstrParser):

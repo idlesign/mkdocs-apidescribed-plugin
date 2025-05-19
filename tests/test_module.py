@@ -3,14 +3,15 @@ def test_smoke(apid, datafix_read):
 
     smoked = datafix_read('smoke.html')
 
-    assert apid(
+    out = apid(
         options=(
             'location:\n'
             '    mode: hidden\n'
             'ignore:\n'
             '    - _*\n'
         )
-    ) == smoked
+    )
+    assert out == smoked
 
     # bogus config lead to default config
     assert apid(

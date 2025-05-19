@@ -1,0 +1,37 @@
+Function description.
+
+.. note::
+    Some note here.
+
+.. code-block:: bash
+    cd ~
+    touch this/
+
+:param a: comment for a
+    .. versionadded:: 2.5
+        Add this.
+
+    .. versionchanged:: 2.5
+        Something has changed.
+
+:type a: List[str], optional
+:param b: hint for b
+    Several lines.
+
+    .. warning::
+        Some warning
+
+    Another line.
+:param args: info for args
+:param another: text for another
+    .. deprecated:: 3.1
+        Use something instead.
+
+:param kwargs: description for kwargs
+
+:raises ValueError: If something happens
+:raises KeyError: If something other happens
+
+:return: This is returned
+:return: This is also returned
+:rtype: bool
