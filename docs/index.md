@@ -23,25 +23,12 @@ pip install mkdocs-apidescribed-plugin
 
 ## Configuration
 
-1. Add ``apidescribed`` into ``mkdocs.yml``:
+1. Add ``apidescribed`` plugin into ``mkdocs.yml``:
 
     ```yaml title="mkdocs.yml"
-    theme:
-      ...
-      features:
-        ...
-        - content.code.annotate  # for parameter descriptions
-   
-    markdown_extensions:
-      - mkdocs_apidescribed.extension # this is our extention
-      - admonition  # nice admonitions
-      - md_in_html  # for proper indentation
-      - pymdownx.details  # collapsible blocks
-      - pymdownx.emoji:  # for icons
-          emoji_index: !!python/name:material.extensions.emoji.twemoji
-          emoji_generator: !!python/name:material.extensions.emoji.to_svg
-      - pymdownx.superfences
-   
+    plugins:
+     - search
+     - apidescribed 
     ```
 
 2. Add ``::: apidescribed:`` directive into your documentation followed by a module path:
