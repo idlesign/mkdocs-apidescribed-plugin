@@ -1,6 +1,6 @@
 # mkdocs-apidescribed-plugin changelog
 
-### Unreleased
+### v1.2.0 [2025-05-24]
 * ++ Easy configuration.
 
 ### v1.1.0 [2025-05-20]
