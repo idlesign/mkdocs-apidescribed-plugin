@@ -6,7 +6,7 @@ build:
     python: "3"
   jobs:
     pre_install:
-      - pip install mkdocs-material mkdocs-apidescribed-plugin
+      - pip install mkdocs-material mkdocs-apidescribed-plugin@git+https://github.com/idlesign/mkdocs-apidescribed-plugin
 
 mkdocs:
   configuration: mkdocs.yml
