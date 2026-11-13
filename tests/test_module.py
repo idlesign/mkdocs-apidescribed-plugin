@@ -1,4 +1,7 @@
 
+import pytest
+
+
 def test_smoke(apid, datafix_read):
 
     smoked = datafix_read('smoke.html')
@@ -36,6 +39,26 @@ def test_exception(apid):
     )
     assert '??? failure "Automated documentation error: ImportError"' in out
     assert 'Traceback (most recent call last):'
+
+
+def test_error_describe(apid):
+
+    out = apid(
+        target="somepackage.somemodule",
+        options="error: describe\n"
+    )
+    assert '??? failure "Automated documentation error: ImportError"' in out
+
+
+def test_error_ignore(apid):
+
+    assert apid(target="somepackage.somemodule", options="error: ignore\n") == '<p>before\nafter</p>'
+
+
+def test_error_break(apid):
+
+    with pytest.raises(ImportError):
+        apid(target="somepackage.somemodule", options="error: break\n")
 
 
 def test_imports():

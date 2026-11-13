@@ -72,6 +72,7 @@ class ApidescribedProcessor(Preprocessor):
                 else:
                     # end of an instruction options block
                     debug = False
+                    error_mode = "describe"
 
                     try:
                         target = instruction[0]
@@ -79,6 +80,7 @@ class ApidescribedProcessor(Preprocessor):
 
                         skip = config['skip']
                         debug = config['debug']
+                        error_mode = config['error']
 
                         if skip:
                             log.debug(f'Skipped instruction for: {target}')
@@ -86,10 +88,14 @@ class ApidescribedProcessor(Preprocessor):
                         else:
                             to_add = process_instruction(target=target, config=config)
 
-                    except Exception as e:
+                    except Exception as error:
 
-                        to_add = [Formatter.format_error(e, instruction=instruction, debug=debug)]
-                        log.exception('Automated API documentation error')
+                        if error_mode == "break":
+                            raise
+
+                        if error_mode == "describe":
+                            to_add = [Formatter.format_error(error, instruction=instruction, debug=debug)]
+                            log.exception('Automated API documentation error')
 
                     finally:
                         instruction.clear()

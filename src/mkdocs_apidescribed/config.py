@@ -7,6 +7,7 @@ log = get_plugin_logger(__name__)
 DEFAULT_CONFIG = {
     'debug': False,  # show traceback
     'skip': False,  # do not describe (allows instructions to be ignored)
+    'error': 'describe',  # error handling mode: ignore, describe, break
     'format': 'auto',  # docstrings format (sphinx, google, numpy)
 
     'heading_base': 2,  # headings base level
