@@ -1,5 +1,8 @@
 # mkdocs-apidescribed-plugin changelog
 
+### Unreleased
+* ** Added 'error' option with 'ignore', 'describe' (default) and 'break' modes (close #1).
+
 ### v1.2.0 [2025-05-24]
 * ++ Easy configuration.
 
