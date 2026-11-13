@@ -1,5 +1,6 @@
 import mkdocs
 from material.extensions.emoji import twemoji, to_svg
+from mkdocs.config import config_options
 from mkdocs.config.defaults import MkDocsConfig
 from mkdocs.plugins import get_plugin_logger
 
@@ -7,6 +8,10 @@ log = get_plugin_logger(__name__)
 
 
 class ApiDescribedPlugin(mkdocs.plugins.BasePlugin):
+
+    config_scheme = (
+        ("config", config_options.Type(dict, default={})),
+    )
 
     _required_extensions = [
         'mkdocs_apidescribed.extension',  # this is our extension
@@ -24,6 +29,9 @@ class ApiDescribedPlugin(mkdocs.plugins.BasePlugin):
         for ext in self._required_extensions:
             if ext not in current_extensions:
                 extensions.append(ext)
+
+        mdx_conf = config['mdx_configs'].setdefault('mkdocs_apidescribed.extension', {})
+        mdx_conf.update(self.config['config'])
 
         icons_conf = config['mdx_configs'].setdefault('pymdownx.emoji', {})
         icons_conf['emoji_index'] = twemoji

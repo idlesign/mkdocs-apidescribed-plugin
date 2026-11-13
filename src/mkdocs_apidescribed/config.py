@@ -81,7 +81,15 @@ def config_merge(base: dict, *, upd: dict) -> dict:
     return out
 
 
-def get_config(src: str) -> dict:
-    parsed = config_parse(src)
-    merged = config_merge(DEFAULT_CONFIG, upd=parsed)
+def get_config(src: str, *, base: dict | None = None) -> dict:
+    """Returns configuration built from the default one,
+    updated with the given base (e.g. a global config),
+    updated with the options parsed from the given source.
+
+    :param src: Options source (YAML).
+
+    :param base: Base configuration to use instead of the default one.
+
+    """
+    merged = config_merge(config_merge(DEFAULT_CONFIG, upd=base or {}), upd=config_parse(src))
     return merged

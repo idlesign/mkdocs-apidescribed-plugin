@@ -4,7 +4,7 @@ from markdown import Extension
 from markdown.preprocessors import Preprocessor
 from mkdocs.plugins import get_plugin_logger
 
-from .config import get_config
+from .config import DEFAULT_CONFIG, get_config
 from .formatter import Formatter
 from .inspector import inspect
 
@@ -16,6 +16,10 @@ class ApidescribedProcessor(Preprocessor):
     RE_START = re.compile(r'^::: apidescribed:(.*)')
 
     cls_fmt = Formatter
+
+    def __init__(self, parser, *, global_config: dict | None = None):
+        super().__init__(parser)
+        self._global_config = global_config or {}
 
     @classmethod
     def process_instruction(cls, *, target: str, config: dict) -> list[str]:
@@ -76,7 +80,7 @@ class ApidescribedProcessor(Preprocessor):
 
                     try:
                         target = instruction[0]
-                        config = get_config('\n'.join(instruction[1:]))
+                        config = get_config('\n'.join(instruction[1:]), base=self._global_config)
 
                         skip = config['skip']
                         debug = config['debug']
@@ -107,9 +111,15 @@ class ApidescribedProcessor(Preprocessor):
 
 class ApiDescribedExtension(Extension):
 
+    def __init__(self, **kwargs):
+        # Predeclare known options to allow arbitrary values via setConfig.
+        self.config = {key: [val, ""] for key, val in DEFAULT_CONFIG.items()}
+        super().__init__(**kwargs)
+
     def extendMarkdown(self, md):
         md.registerExtension(self)
-        md.preprocessors.register(ApidescribedProcessor(md.parser), "apidescribed", 110)
+        md.preprocessors.register(
+            ApidescribedProcessor(md.parser, global_config=self.getConfigs()), "apidescribed", 110)
 
 
 def makeExtension(**kwargs):

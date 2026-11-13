@@ -1,6 +1,10 @@
 
 import pytest
 
+import markdown
+
+from mkdocs_apidescribed.extension import makeExtension
+
 
 def test_smoke(apid, datafix_read):
 
@@ -59,6 +63,22 @@ def test_error_break(apid):
 
     with pytest.raises(ImportError):
         apid(target="somepackage.somemodule", options="error: break\n")
+
+
+def test_global_config():
+
+    text = "::: apidescribed: mkdocs_apidescribed.probe\n"
+
+    out_default = markdown.markdown(text, extensions=[makeExtension()])
+    out_global = markdown.markdown(text, extensions=[makeExtension(heading_base=4)])
+    out_override = markdown.markdown(
+        f"{text}    heading_base: 5\n",
+        extensions=[makeExtension(heading_base=4)],
+    )
+
+    assert "<h2" in out_default
+    assert "<h4" in out_global
+    assert "<h5" in out_override
 
 
 def test_imports():
