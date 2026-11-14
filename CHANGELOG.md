@@ -1,6 +1,6 @@
 # mkdocs-apidescribed-plugin changelog
 
-### Unreleased
+### v1.3.0 [2026-11-14]
 * ++ Added 'error' option with 'ignore', 'describe' (default) and 'break' modes (close #1).
 * ++ Added support for a global configuration via mkdocs.yml plugin settings: defaults, updated with the global config, updated with directive options (close #2).
 
