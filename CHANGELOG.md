@@ -1,6 +1,6 @@
 # mkdocs-apidescribed-plugin changelog
 
-### Unreleased
+### v1.3.1 [2026-11-19]
 * ** Fix crash when a class has a dotted base (e.g. models.Model): such bases are rendered as code without an anchor link.
 * ** Fix only option filtering out class members: it now applies to module level symbols only, class members are kept (ignore still applies at all levels).
 
