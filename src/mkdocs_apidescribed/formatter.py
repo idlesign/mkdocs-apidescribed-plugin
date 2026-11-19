@@ -226,7 +226,18 @@ class Formatter:
 
         prefix = ''
         if symbol.type == SymbolType.cls:
-            if bases := [f'[``{base.name}``](#{base.name.lower()})' for base in symbol.raw.bases]:
+            bases = []
+
+            for base in symbol.raw.bases:
+                base_name = getattr(base, 'name', None)
+
+                if base_name is None:
+                    # Dotted base (e.g. `models.Model`), no anchor to link to.
+                    bases.append(f'``{base}``')
+                else:
+                    bases.append(f'[``{base_name}``](#{base_name.lower()})')
+
+            if bases:
                 prefix = f'{icons["clsbases"]} {" ".join(bases)}\n\n'
 
         text = f'{prefix}{text}\n'

@@ -1,5 +1,9 @@
 # mkdocs-apidescribed-plugin changelog
 
+### Unreleased
+* ** Fix crash when a class has a dotted base (e.g. models.Model): such bases are rendered as code without an anchor link.
+* ** Fix only option filtering out class members: it now applies to module level symbols only, class members are kept (ignore still applies at all levels).
+
 ### v1.3.0 [2026-11-14]
 * ++ Added 'error' option with 'ignore', 'describe' (default) and 'break' modes (close #1).
 * ++ Added support for a global configuration via mkdocs.yml plugin settings: defaults, updated with the global config, updated with directive options (close #2).

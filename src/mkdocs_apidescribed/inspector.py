@@ -162,7 +162,7 @@ def get_symbols(
             if docstring is None and not undocumented:
                 continue
 
-            if only:
+            if only and not depth:  # `only` filters module level symbols, class members are kept.
                 skip = name not in only
 
             else:

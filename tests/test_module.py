@@ -89,3 +89,27 @@ def test_imports():
     # import plugin
     from mkdocs_apidescribed.plugin import ApiDescribedPlugin
     assert ApiDescribedPlugin
+
+
+def test_dotted_base(apid):
+
+    out = apid(
+        options=(
+            'only:\n'
+            '    - MyDottedSubClass\n'
+        )
+    )
+    assert '``pathlib.PurePath``' in out
+    assert 'Dotted base class description.' in out
+
+
+def test_only_keeps_class_members(apid):
+
+    out = apid(
+        options=(
+            'only:\n'
+            '    - MySubClass\n'
+        )
+    )
+    assert 'method_sub_b' in out
+    assert '<h3>:material-delta: MyBaseClass</h3>' not in out

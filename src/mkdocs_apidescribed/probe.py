@@ -9,6 +9,7 @@ https://github.com/idlesign/mkdocs-apidescribed-plugin
 
 .. warning:: This is a reStructuredText mixed warning.
 """
+import pathlib
 from os import environ
 
 from markdown.util import deprecated
@@ -172,3 +173,7 @@ class MySubClass(MyBaseClass, list):
     ) -> str:  # pragma: nocover
         """Sub method_sub_b description."""
         return ''
+
+
+class MyDottedSubClass(pathlib.PurePath):
+    """Dotted base class description."""
